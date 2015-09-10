@@ -1,4 +1,3 @@
-# TODO: check if figure is right size
 # generate filtered data file if it does not exist
 if (!file.exists('filtered_hpc.Rda')) source('filter_data.R')
 

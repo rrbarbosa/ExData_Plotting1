@@ -1,3 +1,4 @@
+# TODO: check if figure is right size
 # generate filtered data file if it does not exist
 if (!file.exists('filtered_hpc.Rda')) source('filter_data.R')
 
@@ -5,7 +6,7 @@ if (!file.exists('filtered_hpc.Rda')) source('filter_data.R')
 load('filtered_hpc.Rda')
 
 # histogram for active power
-png('plot1.png')
+png('plot1.png', height=480, width=480)
 with(data, hist(Global_active_power, 
 				col="red",
 			   	main="Global Active Power",

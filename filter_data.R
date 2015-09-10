@@ -1,8 +1,9 @@
 # How long does it take to do all this stuff?
 ptm <- proc.time()
+message("Reading and filterind the dataset. This might take a while...")
 
-# Load consumption file
-data <- read.csv(file="household_power_consumption.txt", header=TRUE, sep=';')
+# Load consumption file replacing '?' with NA
+data <- read.csv(file="household_power_consumption.txt", header=TRUE, sep=';', na.strings=c("?"))
 
 # Header contents and example
 # Date;Time;Global_active_power;Global_reactive_power;Voltage;Global_intensity;Sub_metering_1;Sub_metering_2;Sub_metering_3
@@ -19,16 +20,13 @@ data <- within(data, DateTime <- strptime(DateTime, "%d/%m/%Y %H:%M:%S"))
 
 # Define start and end time of the analysis
 start <- strptime("2007-02-01", "%Y-%m-%d")
-end   <- strptime("2007-02-02", "%Y-%m-%d")
+end   <- strptime("2007-02-03", "%Y-%m-%d")
 
-# filter using start end end
-data <- with(data, data[DateTime > start & DateTime < end, ])
-
-# TODO: need to set the type for the other columns?
-# TODO: deal with the question marks '?'
+# filter using start and end, we need to explicitly remove NA entries
+data <-  data[data$DateTime >= start & data$DateTime < end & !is.na(data$DateTime), ]
 
 # It took this long (~2min in my box!)
-print(proc.time() - ptm)
+message(paste("... it took:", (proc.time() - ptm)[3],"seconds"))
 
 # Save filtered data
 save(data, file="filtered_hpc.Rda")

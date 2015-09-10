@@ -1,3 +1,5 @@
+# TODO: to make it more complete, we could also download the file from the Internet..
+
 # How long does it take to do all this stuff?
 ptm <- proc.time()
 message("Reading and filterind the dataset. This might take a while...")

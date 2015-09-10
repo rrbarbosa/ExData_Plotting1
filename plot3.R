@@ -4,7 +4,7 @@ if (!file.exists('filtered_hpc.Rda')) source('filter_data.R')
 # load it 
 load('filtered_hpc.Rda')
 
-png('plot3.png', height=480, width=480)
+png('plot3.png', height=480, width=480, bg = "transparent")
 # TODO: check which vector has the maximum value
 #  		this is the one which should be used as argument in plot()
 with(data, plot(DateTime, Sub_metering_1,

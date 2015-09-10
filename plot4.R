@@ -4,7 +4,7 @@ if (!file.exists('filtered_hpc.Rda')) source('filter_data.R')
 # load it 
 load('filtered_hpc.Rda')
 
-png('plot4.png', height=480, width=480)
+png('plot4.png', height=480, width=480, bg = "transparent")
 par(mfrow = c(2, 2))
 # plot 1,1
 with(data, plot(DateTime, Global_active_power,
